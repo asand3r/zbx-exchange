@@ -5,7 +5,7 @@ Zabbix Share page: -
 Have fun and rate it on Zabbix Share page, if it helps you. =)
 
 zbx-exchange provides possibility to make Low Level Discovery of Microsoft Exchange Server databases and retrieve their parameters with perfomance counters. Attached template works only with Zabbix 4.2 and above.  
-![alt text](https://pp.userapi.com/c850236/v850236406/167612/iavSvt1GcLA.jpg)
+![alt text](https://pp.userapi.com/c850236/v850236406/167612/iavSvt1GcLA.jpg)  
 
 **Latest stable version:** 0.1  
 
@@ -49,7 +49,7 @@ So, based on it, installation will be contents next steps:
 - Increase Timeout in Zabbix Agent config file at least to 10 seconds;
 - Restart Zabbix Agent Service;
 
-## Zabbix templates
+## Zabbix template
 In addition I've attached preconfigured Zabbix Template for version 4.2, so you can use it in your environment.  
 The template contains two LLD rules:
   - Exchange Database Discovery
@@ -57,6 +57,7 @@ The template contains two LLD rules:
 The first one uses _zbx-exchange.ps1_ script and the second one - built-in 'service.discovery', so, if you already has LLD for services, you must remove one of them.  
 All perfomance counters thresholds has been taken from this page:  
 https://docs.microsoft.com/ru-ru/exchange/exchange-2013-performance-counters-exchange-2013-help
+![alt text](https://pp.userapi.com/c850236/v850236406/167648/tcaEMpfZjmk.jpg)
 
 **Tested with**:  
 Exchange Server 2016 on Windows Server 2016.
