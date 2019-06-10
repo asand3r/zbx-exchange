@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2019-06-10T12:01:00Z</date>
+    <date>2019-06-10T14:10:24Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -2444,10 +2444,9 @@ Startup type: {#SERVICE.STARTUPNAME}</description>
                             <url/>
                             <status>0</status>
                             <priority>2</priority>
-                            <description>Служба {#SERVICE.NAME} в состоянии {ITEM.VALUE}.&#13;
+                            <description>Service {#SERVICE.NAME} in {ITEM.VALUE} state.&#13;
 &#13;
-Описание: {#SERVICE.DISPLAYNAME}&#13;
-Запуск: {#SERVICE.STARTUPNAME}</description>
+Description: {#SERVICE.DISPLAYNAME}</description>
                             <type>0</type>
                             <manual_close>0</manual_close>
                             <dependencies/>
@@ -2455,6 +2454,10 @@ Startup type: {#SERVICE.STARTUPNAME}</description>
                                 <tag>
                                     <tag>state</tag>
                                     <value>{ITEM.VALUE}</value>
+                                </tag>
+                                <tag>
+                                    <tag>windows service</tag>
+                                    <value>{#SERVICE.NAME}</value>
                                 </tag>
                             </tags>
                         </trigger_prototype>
