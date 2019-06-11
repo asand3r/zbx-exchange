@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2019-06-10T14:10:24Z</date>
+    <date>2019-06-11T08:08:54Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -12,7 +12,7 @@
             <template>Template Exchange Server 2016</template>
             <name>Template Exchange Server 2016</name>
             <description>MS Exchange Server 2016 template&#13;
-v0.1&#13;
+v0.1.1&#13;
 &#13;
 LLD:&#13;
  - Databases (with PowerShell script)&#13;
@@ -1818,7 +1818,9 @@ If this counter is greater than 10, it's an indication that the MSExchange Datab
                             <description>Database {#DB.NAME} state</description>
                             <inventory_link>0</inventory_link>
                             <applications/>
-                            <valuemap/>
+                            <valuemap>
+                                <name>Exchange Server 2016 Database State</name>
+                            </valuemap>
                             <logtimefmt/>
                             <preprocessing/>
                             <jmx_endpoint/>
@@ -2160,7 +2162,7 @@ Should be below 70 at all times.</description>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database(Information Store - {#DB.NAME})\Log Record Stalls/sec&quot;,{$PERFCOUNTER_PERIOD}].avg(5m)}&gt;100</expression>
+                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database(Information Store - {#DB.NAME})\Log Record Stalls/sec&quot;,{$PERFCOUNTER_PERIOD}].avg(10m)}&gt;100</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#DB.NAME} log records stalls too high: {ITEM.VALUE}</name>
@@ -2177,7 +2179,7 @@ The average value should be less than 10 threads waiting.</description>
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database(Information Store - {#DB.NAME})\Log Threads Waiting&quot;,{$PERFCOUNTER_PERIOD}].min(5m)}&gt;10</expression>
+                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database(Information Store - {#DB.NAME})\Log Threads Waiting&quot;,{$PERFCOUNTER_PERIOD}].min(10m)}&gt;10</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#DB.NAME} log threads waiting too high: {ITEM.VALUE}</name>
@@ -2194,7 +2196,7 @@ The average value should be less than 10 threads waiting.</description>
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database ==&gt; Instances(Information Store - {#DB.NAME}/_Total)\I/O Log Writes Average Latency&quot;,{$PERFCOUNTER_PERIOD}].min(5m)}&gt;10</expression>
+                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database ==&gt; Instances(Information Store - {#DB.NAME}/_Total)\I/O Log Writes Average Latency&quot;,{$PERFCOUNTER_PERIOD}].min(10m)}&gt;10</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#DB.NAME} log write latency too high: {ITEM.VALUE}</name>
@@ -2210,7 +2212,7 @@ The average value should be less than 10 threads waiting.</description>
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database(Information Store - {#DB.NAME})\Database Page Fault Stalls/sec&quot;,{$PERFCOUNTER_PERIOD}].avg(5m)}&gt;0</expression>
+                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database(Information Store - {#DB.NAME})\Database Page Fault Stalls/sec&quot;,{$PERFCOUNTER_PERIOD}].max(5m)}&gt;0</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#DB.NAME} page faults too high</name>
@@ -2227,7 +2229,7 @@ This counter should be 0 on production servers.</description>
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database ==&gt; Instances(Information Store - {#DB.NAME}/_Total)\I/O Database Reads (Attached) Average Latency&quot;,{$PERFCOUNTER_PERIOD}].min(5m)}&gt;20</expression>
+                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database ==&gt; Instances(Information Store - {#DB.NAME}/_Total)\I/O Database Reads (Attached) Average Latency&quot;,{$PERFCOUNTER_PERIOD}].min(10m)}&gt;20</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#DB.NAME} read time latency too high: {ITEM.VALUE}</name>
@@ -2243,7 +2245,7 @@ This counter should be 0 on production servers.</description>
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchangeIS Store({#DB.LCNAME})\RPC Average Latency&quot;,{$PERFCOUNTER_PERIOD}].avg(5m)}&gt;100</expression>
+                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchangeIS Store({#DB.LCNAME})\RPC Average Latency&quot;,{$PERFCOUNTER_PERIOD}].avg(10m)}&gt;100</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#DB.NAME} RPC Requests latancy too high: {ITEM.VALUE}</name>
@@ -2259,7 +2261,7 @@ This counter should be 0 on production servers.</description>
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchangeIS Store({#DB.LCNAME})\RPC requests&quot;,{$PERFCOUNTER_PERIOD}].avg(1m)}&gt;70</expression>
+                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchangeIS Store({#DB.LCNAME})\RPC requests&quot;,{$PERFCOUNTER_PERIOD}].avg(10m)}&gt;70</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#DB.NAME} RPC Requests too high: {ITEM.VALUE}</name>
@@ -2275,7 +2277,7 @@ This counter should be 0 on production servers.</description>
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database ==&gt; Instances(Information Store - {#DB.NAME}/_Total)\I/O Database Writes (Attached) Average Latency&quot;,{$PERFCOUNTER_PERIOD}].avg(5m)}&gt;50</expression>
+                            <expression>{Template Exchange Server 2016:perf_counter[&quot;\MSExchange Database ==&gt; Instances(Information Store - {#DB.NAME}/_Total)\I/O Database Writes (Attached) Average Latency&quot;,{$PERFCOUNTER_PERIOD}].avg(10m)}&gt;50</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#DB.NAME} write time latency too high: {ITEM.VALUE}</name>
@@ -2446,7 +2448,7 @@ Startup type: {#SERVICE.STARTUPNAME}</description>
                             <priority>2</priority>
                             <description>Service {#SERVICE.NAME} in {ITEM.VALUE} state.&#13;
 &#13;
-Description: {#SERVICE.DISPLAYNAME}</description>
+Description: {#SERVICE.DISPLAYNAME}.</description>
                             <type>0</type>
                             <manual_close>0</manual_close>
                             <dependencies/>
@@ -2622,6 +2624,23 @@ Description: {#SERVICE.DISPLAYNAME}</description>
                 <mapping>
                     <value>1</value>
                     <newvalue>Mounted</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>Exchange Server 2016 Database State</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>Dismounted</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Mounted</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>Healthy</newvalue>
                 </mapping>
             </mappings>
         </value_map>
