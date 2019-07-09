@@ -4,7 +4,7 @@ Zabbix server template for Exchange Server
 Zabbix Share page: https://share.zabbix.com/cat-app/mail-servers/exchange-server  
 Have fun and rate it on Zabbix Share page, if it helps you. =)
 
-zbx-exchange provides possibility to make Low Level Discovery of Microsoft Exchange Server databases and retrieve their parameters with perfomance counters. Attached template works only with Zabbix 4.2 and above.  
+zbx-exchange provides possibility to make Low Level Discovery of Microsoft Exchange Server databases and retrieve their parameters with perfomance counters. Attached template Template Exchange Server 2016.xml works only with Zabbix 4.2 and above. For zabbix 4.0 please use the file Template Exchange Server zbx40.xml.
 ![alt text](https://pp.userapi.com/c850236/v850236406/167612/iavSvt1GcLA.jpg)  
 
 **Latest stable version:** 0.1  
