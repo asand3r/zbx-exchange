@@ -27,11 +27,12 @@
 Param (
     [switch]$Version = $False,
     [ValidateSet(2010,2013,2016,2019)][Parameter(Position=0,Mandatory=$False)][int]$ExchVersion = 2016,
-    [Parameter(Mandatory=$False)][switch]$Pretty
+    [Parameter(Mandatory=$False)][switch]$Pretty,
+    [string]$OutFile
 )
 
 # Script version
-$VERSION_NUM="0.1"
+$VERSION_NUM="0.2"
 
 if ($Version) {
     Write-Host $VERSION_NUM
@@ -53,9 +54,11 @@ try {
 
 # Low-Level Discovery function
 function Make-LLD() {
-    $dbs = Get-MailboxDatabase | Select-Object @{Name = "{#DB.NAME}"; e={$_.Name}},
-                                  @{Name = "{#DB.LCNAME}"; e={$_.Name.tolower()}},
-                                  @{Name = "{#DB.EDBPATH}"; e={$_.EdbFilePath}}
+    $dbs = Get-MailboxDatabaseCopyStatus | Select-Object @{Name = "{#DB.NAME}"; e={$_.DatabaseName}},
+                                                         @{Name = "{#DB.LCNAME}"; e={$_.DatabaseName.ToLower()}},
+                                                         @{Name = "{#DB.STATUS}"; e={$_.Status}},
+                                                         @{Name = "{#DB.ACTPREF}"; e={$_.ActivationPreference}},
+                                                         @{Name = "{#DB.EDBPATH}"; e={$(Get-MailboxDatabase $_.DatabaseName).EdbFilePath}}
     
     # Is we need to print output with linebreaks?
     if ($pretty) {
@@ -65,4 +68,8 @@ function Make-LLD() {
     }
 }
 
-Write-Host $(Make-LLD)
+if ($OutFile) {
+    Make-LLD | Out-File -FilePath $OutFile -Encoding ascii
+} else {
+    Write-Host $(Make-LLD)
+}
